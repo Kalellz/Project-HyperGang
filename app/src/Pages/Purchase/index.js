@@ -46,7 +46,7 @@ function App() {
               </li>
             </ul>
             <form class="d-flex" role="search">
-              <input style={{width: '82vw', outline:'none'}} class="form-control me-5" type="search" placeholder="Buscar Produto" aria-label="Search" />
+              <input style={{width: '75vw', outline:'none'}} class="form-control me-5" type="search" placeholder="Buscar Produto" aria-label="Search" />
               <button class="btn btn-outline-primary" type="submit">Buscar</button>
             </form>
           </div>
@@ -66,7 +66,7 @@ function App() {
                   <div class="card-body">
                     <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
                     <p class="card-text text-center h-50">{item.ds_produto}</p>
-                    <a href="#" class="btn btn-primary w-100" onClick={() => {
+                    <a class="btn btn-primary w-100" onClick={() => {
                       navigate('/product/DispenserPDDA')
                     }}>Quero Ver!</a>
                   </div>
