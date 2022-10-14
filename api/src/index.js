@@ -9,6 +9,7 @@ const server = express();
 server.use(cors());
 server.use(express.json())
 server.use('/storage/userIcon', express.static('storage/userIcon'))
+server.use('/storage/productsIcon', express.static('storage/productsIcon'))
 server.use(productRepository)
 server.use(userController)
 server.listen(process.env.PORT,

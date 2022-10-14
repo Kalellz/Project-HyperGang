@@ -8,3 +8,7 @@ export async function Listcategories(){
     const r = await api.get('product/category')
     return r.data
 }
+export async function ListProducts(){
+    const r = await api.get('products')
+    return r.data
+}
