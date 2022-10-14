@@ -8,6 +8,15 @@ export async function logup(nome, sobrenome, email, senha){
     const [resp] = await con.query(c, [nome, sobrenome, email, senha])
     return resp;
 }
+export async function alterimage(image, id){
+    const c = `
+    UPDATE  tb_usuario
+    SET     img_icon =      ?
+    WHERE   id_usuario =    ?`
+
+    const [resp] = await con.query(c, [image, id])
+    return resp.affectedRows;
+}
 export async function login(email, senha){
     const c = `
     SELECT 		id_usuario 	        id,
