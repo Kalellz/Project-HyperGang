@@ -1,9 +1,11 @@
 import '../Log.scss';
+import storage from 'local-storage';
+import LoadingBar from 'react-top-loading-bar';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import { Login } from "../../../api/userApi.js";
+import { useState, useRef } from 'react';
+import { Login } from "../../../api/userApi.js"
+
 function Home() {
-    const navigate = useNavigate();
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     const [erro, setErro] = useState('')
@@ -13,7 +15,11 @@ function Home() {
             if (r.status === 400) {
                 setErro(r.data.erro);
             } else {
-                navigate('/')
+                ref.current.continuousStart()
+                setTimeout(() => {
+                    navigate('/')
+                }, 3000)
+                storage('usuario-logado', r)
             }
         } catch (err) {
             if (err.response.status === 400)
@@ -21,8 +27,11 @@ function Home() {
         }
     }
     
+    const navigate = useNavigate();
+    const ref = useRef()
     return (
         <main className='Sign-Main'>
+            <LoadingBar color='#fff' ref={ref} />
             <div className='Sign-ButtonTo-Signup'>
                 <button className="cta" onClick={() => navigate('/cadastro')}>
                     <span className="hover-underline-animation">Cadastre-Se</span>
