@@ -1,0 +1,55 @@
+header {
+    width: 100%;
+    height: 10vh;
+    background-color: #202020;
+    box-shadow: 0 .25rem .5rem rgba(#000, .075);
+    transition: all .2s;
+    display: flex;
+    justify-content: space-between;
+
+    .Header-Logo-Config {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        height: 8vh;
+
+        img {
+            height: 100%;
+            width: 4em;
+        }
+    }
+
+    .Header-Links-Config {
+        height: 8vh;
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            height: fit-content;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+
+            background-image: linear-gradient(transparent 0%, transparent 98%, #ffff 20%, #fff 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 80%;
+            background-position-x: center;
+
+            transition: background-size 800ms;
+        }
+
+        a:hover {
+            color: black;
+            transition: 780ms;
+
+            color: #505050;
+            transition: 500ms;
+            background-size: 60% 80%;
+            background-position-x: center;
+        }
+    }
+}

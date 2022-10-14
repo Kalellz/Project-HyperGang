@@ -1,0 +1,49 @@
+$primary-color : #183691;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family:'Arimo-Bold';
+  src: url(./Assets/fonts/Arimo/Arimo-Bold.ttf);
+}
+@font-face {
+  font-family:'Arimo-BoldItalic';
+  src: url(./Assets/fonts/Arimo/Arimo-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family:'Arimo-Medium';
+  src: url(./Assets/fonts/Arimo/Arimo-Medium.ttf);
+}
+
+@font-face {
+  font-family:'Arimo-MediumItalic';
+  src: url(./Assets/fonts/Arimo/Arimo-MediumItalic.ttf);
+}
+
+@font-face {
+  font-family:'Arimo-Regular';
+  src: url(./Assets/fonts/Arimo/Arimo-Regular.ttf);
+}
+
+@font-face {
+  font-family:'Arimo-SemiBold';
+  src: url(./Assets/fonts/Arimo/Arimo-SemiBold.ttf);
+}
+
+@font-face {
+  font-family:'Arimo-SemiBoldItalic';
+  src: url(./Assets/fonts/Arimo/Arimo-SemiBoldItalic.ttf);
+}
+
