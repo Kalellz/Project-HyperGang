@@ -3,12 +3,20 @@ import Header from '../common/Header'
 import Footer from '../common/Footer'
 import dispensador1 from '../../Assets/images/Dispensador-image-1.jpg'
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { ListProducts } from '../../api/productApi.js'
 import 'swiper/css';
 
 function App() {
   const navigate = useNavigate();
-
+  const [produtos, setProdutos] = useState([])
+  async function ListarProdutos() {
+    setProdutos(await ListProducts())
+  }
+  useEffect(() => {
+    ListarProdutos()
+  }, [])
   return (
     <main>
       <header>
@@ -50,49 +58,22 @@ function App() {
           slidesPerView={3}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}>
-            
-          <SwiperSlide>
-            <div className='Purchase-Cards'>
-              <div class="card w-75 m-5 d-flex flex-wrap">
-                <img src={dispensador1} class="card-img-top " />
-                <div class="card-body">
-                  <h5 class="card-title text-center">Dispenser Pasta De Dente Automático</h5>
-                  <p class="card-text text-center">O dispositivo inteligente para economizar espaço e pasta de dente!</p>
-                  <a href="#" class="btn btn-primary w-100" onClick={() => {
-                    navigate('/product/DispenserPDDA')
-                  }}>Quero Ver!</a>
-                </div>
+            {produtos.map((item) => (
+              <SwiperSlide>
+              <div className='Purchase-Cards'>
+                <section class="card w-75 m-5 d-flex flex-wrap p-3">
+                <img class="card-img-top"src={`http://localhost:5000/${item.img_produto}`} />
+                  <div class="card-body">
+                    <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
+                    <p class="card-text text-center h-50">{item.ds_produto}</p>
+                    <a href="#" class="btn btn-primary w-100" onClick={() => {
+                      navigate('/product/DispenserPDDA')
+                    }}>Quero Ver!</a>
+                  </div>
+                </section>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className='Purchase-Cards'>
-              <div class="card w-75 m-5 d-flex flex-wrap">
-                <img src={dispensador1} class="card-img-top" />
-                <div class="card-body">
-                  <h5 class="card-title text-center">Dispenser Pasta De Dente Automático</h5>
-                  <p class="card-text text-center">O dispositivo inteligente para economizar espaço e pasta de dente!</p>
-                  <a href="#" class="btn btn-primary w-100" onClick={() => {
-                    navigate('/product/DispenserPDDA')
-                  }}>Quero Ver!</a>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className='Purchase-Cards'>
-              <div class="card w-75 m-5 d-flex flex-wrap">
-                <img src={dispensador1} class="card-img-top" />
-                <div class="card-body">
-                  <h5 class="card-title text-center">Dispenser Pasta De Dente Automático</h5>
-                  <p class="card-text text-center">O dispositivo inteligente para economizar espaço e pasta de dente!</p>
-                  <a href="#" class="btn btn-primary w-100" onClick={() => {
-                    navigate('/product/DispenserPDDA')
-                  }}>Quero Ver!</a>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+            ))}
         </Swiper>
       </section>
       <footer>
