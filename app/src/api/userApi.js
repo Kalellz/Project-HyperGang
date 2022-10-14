@@ -11,3 +11,12 @@ export async function Login(email,senha){
       });
       return r.data
 }
+export async function Logup(nome, sobrenome, email,senha){
+  const r = await api.post('user/logup', {
+      nome: nome,
+      sobrenome: sobrenome,
+      email: email,
+      senha: senha
+    });
+    return r.data
+}

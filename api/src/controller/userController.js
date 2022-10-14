@@ -1,24 +1,26 @@
-import { login, logup, alterimage } from "../repo/userRepository.js";
+import { login, logup, alterimage, verifUserEmail } from "../repo/userRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
 const upload = multer({ dest : 'storage/userIcon' })
 const server = Router();
 
-server.post('/user/logup', async (req, resp) => {
-    try{
-        const {nome, sobrenome, email, senha} = req.body;
-        const resposta = await logup(nome, sobrenome, email, senha)
-        if(!resposta){
-            throw new Error('Credenciais inválidas')
-        }
-        resp.status(204)
-    } catch(err){
-        resp.status(400).send({
-            erro: err.message
-        })
-    }
-})
+server.post("/user/logup", async (req, res) => {
+	try {
+		const {nome, sobrenome, email, senha} = req.body;
+		const verif = await verifUserEmail(email);
+		if (!verif) {
+			const r = await logup(nome, sobrenome, email, senha);
+			res.send(r);
+		} else {
+			throw new Error("E-mail já está em uso.");
+		}
+	} catch (err) {
+		res.status(400).send({
+			erro: err.message,
+		});
+	}
+});
 server.post('/user/login', async (req, resp) => {
     try{
         const {email, senha} = req.body;

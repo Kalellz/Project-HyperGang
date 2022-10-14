@@ -29,3 +29,10 @@ export async function login(email, senha){
     const [resp] = await con.query(c, [email, senha])
     return resp[0];
 }
+export async function verifUserEmail(email) {
+	const c = `
+        SELECT ds_email FROM tb_usuario WHERE ds_email = ?;
+        `;
+	const [res] = await con.query(c, [email]);
+	return res[0];
+}
