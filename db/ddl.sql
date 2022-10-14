@@ -10,7 +10,8 @@ CREATE TABLE tb_usuario(
 );
 CREATE TABLE tb_categoria(
 		id_categoria			INT PRIMARY KEY AUTO_INCREMENT,
-        nm_categoria			varchar(200)
+        nm_categoria			varchar(200),
+        img_categoria           VARCHAR(200)
 );
 CREATE TABLE tb_produto(
 		id_produto				INT PRIMARY KEY AUTO_INCREMENT,

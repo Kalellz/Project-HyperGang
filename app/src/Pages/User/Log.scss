@@ -109,9 +109,9 @@
 
             button:hover {
                 letter-spacing: 0.25em;
-                background: #ff1867;
-                color: #ff1867;
-                box-shadow: 0 0 45px #ff1867;
+                background: #ffffff;
+                color: #ffffff;
+                box-shadow: 0 0 45px #ffffff;
             }
 
             button::before {
@@ -135,7 +135,7 @@
             button i::before {
                 content: '';
                 position: absolute;
-                border: 2px solid #ff1867;
+                border: 2px solid #ffffff;
                 width: 7px;
                 height: 4px;
                 top: -3.5px;
@@ -153,7 +153,7 @@
             button i::after {
                 content: '';
                 position: absolute;
-                border: 2px solid #ff1867;
+                border: 2px solid #ffffff;
                 width: 7px;
                 height: 4px;
                 bottom: -3.5px;

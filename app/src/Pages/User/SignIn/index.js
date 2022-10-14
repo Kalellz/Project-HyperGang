@@ -9,6 +9,7 @@ function Home() {
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     const [erro, setErro] = useState('')
+    const [disabled, setDisabled] = useState(false);
     async function entrarClick() {
         try {
             const r = await Login(email, senha);
@@ -16,6 +17,7 @@ function Home() {
                 setErro(r.data.erro);
             } else {
                 ref.current.continuousStart()
+                setDisabled(false);
                 setTimeout(() => {
                     navigate('/')
                 }, 3000)
@@ -29,6 +31,12 @@ function Home() {
     
     const navigate = useNavigate();
     const ref = useRef()
+    document.addEventListener("keypress", function (e) {
+		if (e.key === "Enter") {
+			const btn = document.querySelector("#send");
+			btn.click();
+		}
+	});
     return (
         <main className='Sign-Main'>
             <LoadingBar color='#fff' ref={ref} />
@@ -49,12 +57,12 @@ function Home() {
                             <label className="form__label" for="name">Email</label>
                         </div>
                         <div class="form__group field">
-                            <input placeholder="Name" className="form__field" type="input" value={senha} onChange={e => setSenha(e.target.value)} />
+                            <input placeholder="Name" className="form__field" type="password" value={senha} onChange={e => setSenha(e.target.value)} />
                             <label className="form__label" for="name">Senha</label>
                         </div>
                     </div>
                     <div className='Sign-Button'>
-                        <button onClick={() => entrarClick()}>
+                        <button  id="send" disabled={disabled} onClick={() => entrarClick()}>
                             <span>Estou Pronto!</span><i></i>
                         </button>
                     </div>
