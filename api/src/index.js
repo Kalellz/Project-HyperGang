@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import { con } from './repo/connection.js'
 import userController from './controller/userController.js'
 
 import express from 'express';
