@@ -122,10 +122,10 @@ function App() {
                         </article>
                         <div className='alterConfig-user-config-person'>
                             <article>
-                                <h1>Senha:</h1><button><span>Configurar Senha</span></button>
+                                <h1>Senha:</h1><button><span>Configurar</span></button>
                             </article>
                             <article>
-                                <h1>Image:</h1><button><span>Configurar Senha</span></button>
+                                <h1>Image:</h1><button><span>Configurar</span></button>
                             </article>
                         </div>
                     </div>
