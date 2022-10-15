@@ -12,16 +12,17 @@ function App() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState([])
   const [filtro, setFiltro] = useState("")
+  const [category, setCategory] = useState(0)
   async function ListarProdutos() {
     setProdutos(await ListProducts())
   }
   async function Filtrar() {
-    const resp = await ListProductsName(filtro);
+    const resp = await ListProductsName(filtro, category);
     setProdutos(resp);
   }
   useEffect(() => {
     Filtrar()
-  }, [filtro])
+  }, [category, filtro])
   useEffect(() => {
     ListarProdutos()
   }, [])
@@ -37,21 +38,15 @@ function App() {
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorias
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Eletronicos</a></li>
-                  <li><a class="dropdown-item" href="#">Fitness</a></li>
-                  <li><a class="dropdown-item" href="#">Brinquedos</a></li>
-                  <li><a class="dropdown-item" href="#">Casa e Cozinha</a></li>
-                  <li><a class="dropdown-item" href="#">Ferramentas</a></li>
-                  <li><a class="dropdown-item" href="#">Saúde e Beleza</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Geral</a></li>
-                </ul>
-              </li>
+              <select value={category} onChange={(e) => setCategory(Number(e.target.value))} class="form-select" aria-label="Default select example">
+                <option value="0">Geral</option>
+                <option value="1">Casa e Cozinha</option>
+                <option value="2">Brinquedos</option>
+                <option value="3">Eletronicos</option>
+                <option value="4">Fitness</option>
+                <option value="5">Ferramentas</option>
+                <option value="6">Saúde e Beleza</option>
+              </select>
             </ul>
             <form class="d-flex" role="search">
               <input style={{ width: '75vw', outline: 'none' }} class="form-control me-5" type="search" placeholder="Buscar Produto" aria-label="Search" value={filtro} onChange={(e) => setFiltro(e.target.value)} />
@@ -60,20 +55,21 @@ function App() {
         </div>
       </nav>
       <section className='Purchase-Main-Content'>
-          {produtos.map((item) => (
-                <div className='Purchase-Cards'>
-                  <section class="card w-75 m-5 d-flex flex-wrap p-3">
-                    <img class="card-img-top" src={`http://localhost:5000/${item.img_produto}`} />
-                    <div class="card-body">
-                      <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
-                      <p class="card-text text-center h-50">{item.ds_produto}</p>
-                      <a class="btn btn-primary w-100" onClick={() => {
-                        navigate('/product/DispenserPDDA')
-                      }}>Quero Ver!</a>
-                    </div>
-                  </section>
-                </div>
-          ))}
+        {produtos.map((item) => (
+          <div className='Purchase-Cards'>
+            <section class="card w-75 m-5 d-flex flex-wrap p-3">
+              <img class="card-img-top" src={`http://localhost:5000/${item.img_produto}`} />
+              <div class="card-body">
+                <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
+                <p class="card-text text-center h-50">{item.ds_produto}</p>
+                <p class="card-text text-center h-50 text-success">R${item.vl_produto},00</p>
+                <a class="btn btn-primary w-100" onClick={() => {
+                  navigate(`/product/${item.id_produto}`)
+                }}>Quero Ver!</a>
+              </div>
+            </section>
+          </div>
+        ))}
       </section>
       <footer>
         <Footer />

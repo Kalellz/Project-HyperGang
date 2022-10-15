@@ -51,5 +51,37 @@ header {
             background-size: 60% 80%;
             background-position-x: center;
         }
+
+        .user-logado-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 8%;
+            .user-config-header{
+                cursor: pointer;
+                margin-left: 3vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 10vh;
+                width: 50%;
+                img{
+                    width: 1.7em;
+                    height: 1.7em;
+                    border-radius: 2em;
+                }
+                h1{
+                    user-select: none;
+                    margin-top: .6em;
+                    padding: .6em;
+                    text-align: center;
+                    font-size: .9em;
+                    color: #fff;
+                }
+            }
+            button{
+                height: 50%;
+            }
+        }
     }
 }

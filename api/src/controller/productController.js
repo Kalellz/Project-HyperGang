@@ -1,4 +1,4 @@
-import { alterimage ,alterimagecategory, listcategories, listproducts, searchProductsName } from "../repo/productRepository.js";
+import { alterimage ,alterimagecategory, listcategories, listproducts, searchProductsId, searchProductsName } from "../repo/productRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
@@ -55,8 +55,19 @@ server.put('/product/category/:id/imagem', upload.single('capa'), async (req, re
 })
 server.get('/product/search', async (req, resp) => {
     try{
-        const {name} = req.query
-        const resposta = await searchProductsName(name)
+        const {name, category} = req.query
+        const resposta = await searchProductsName(name, category)
+        resp.send(resposta)
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+server.get('/product/search/:id', async (req, resp) => {
+    try{
+        const {id} = req.params
+        const resposta = await searchProductsId(id)
         resp.send(resposta)
     } catch(err){
         resp.status(400).send({

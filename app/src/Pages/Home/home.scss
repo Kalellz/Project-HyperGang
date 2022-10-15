@@ -68,6 +68,10 @@ $primary-color : #183691;
                 background: #f5f5f5;
                 overflow: visible;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+                transition: .3s ease;
+                *{
+                    user-select: none;
+                }
             }
 
             .card-img {
@@ -75,7 +79,6 @@ $primary-color : #183691;
                 height: 50%;
                 width: 100%;
                 border-radius: .5rem;
-                transition: .3s ease;
             }
 
             .card-info {
@@ -120,8 +123,8 @@ $primary-color : #183691;
             }
 
             /*Hover*/
-            .card-img:hover {
-                transform: translateY(-25%);
+            .card:hover {
+                transform: translateY(-10%);
                 box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
             }
 

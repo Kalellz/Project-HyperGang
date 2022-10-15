@@ -32,11 +32,22 @@ export async function alterimagecategory(image, id){
     const [resp] = await con.query(c, [image, id])
     return resp.affectedRows;
 }
-export async function searchProductsName(name){
+export async function searchProductsName(name, category){
     const c = `
     SELECT * FROM   tb_produto 
-    WHERE           nm_produto LIKE ?`
+    WHERE           nm_produto LIKE ?
+    AND (? = '0' OR id_categoria = ?);
+    `
     
-    const [resp] = await con.query(c, [`%${name}%`])
+    const [resp] = await con.query(c, [`%${name}%`, category, category])
+    return resp;
+}
+export async function searchProductsId(id){
+    const c = `
+    SELECT * FROM tb_produto
+    WHERE id_produto = ?
+    `
+    
+    const [resp] = await con.query(c, [id])
     return resp;
 }

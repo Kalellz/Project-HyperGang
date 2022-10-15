@@ -1,4 +1,4 @@
-import { login, logup, alterimage, verifUserEmail } from "../repo/userRepository.js";
+import { login, logup, alterimage, verifUserEmail, showUser } from "../repo/userRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
@@ -50,4 +50,14 @@ server.put('/user/:id/imagem', upload.single('capa'), async (req, resp) => {
         })
     }
 })
+server.get('/user/:id', async (req, resp) => {
+    try{
+        const { id } = req.params
+        const r = await showUser(id)
+        resp.send(r)
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+}})
 export default server;

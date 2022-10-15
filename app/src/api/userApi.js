@@ -20,3 +20,7 @@ export async function Logup(nome, sobrenome, email,senha){
     });
     return r.data
 }
+export async function showUser(id){
+  const r = await api.get(`user/${id}`)
+  return r.data
+}

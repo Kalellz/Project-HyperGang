@@ -21,7 +21,10 @@ export async function login(email, senha){
     const c = `
     SELECT 		id_usuario 	        id,
                 nm_usuario          nome,
-                sbr_usuario         sobrenome
+                sbr_usuario         sobrenome,
+                ds_email            email,
+                ds_senha            senha,
+                img_icon            imagem
         FROM    tb_usuario
         WHERE   ds_email =          ?
         AND     ds_senha   =        ?`
@@ -34,5 +37,12 @@ export async function verifUserEmail(email) {
         SELECT ds_email FROM tb_usuario WHERE ds_email = ?;
         `;
 	const [res] = await con.query(c, [email]);
+	return res[0];
+}
+export async function showUser(id) {
+	const c = `
+        SELECT * FROM tb_usuario WHERE id_usuario = ?;
+        `;
+	const [res] = await con.query(c, [id]);
 	return res[0];
 }
