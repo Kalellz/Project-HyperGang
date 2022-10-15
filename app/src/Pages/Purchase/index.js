@@ -5,15 +5,23 @@ import dispensador1 from '../../Assets/images/Dispensador-image-1.jpg'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ListProducts } from '../../api/productApi.js'
+import { ListProducts, ListProductsName } from '../../api/productApi.js'
 import 'swiper/css';
 
 function App() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState([])
+  const [filtro, setFiltro] = useState("")
   async function ListarProdutos() {
     setProdutos(await ListProducts())
   }
+  async function Filtrar() {
+    const resp = await ListProductsName(filtro);
+    setProdutos(resp);
+  }
+  useEffect(() => {
+    Filtrar()
+  }, [filtro])
   useEffect(() => {
     ListarProdutos()
   }, [])
@@ -46,35 +54,26 @@ function App() {
               </li>
             </ul>
             <form class="d-flex" role="search">
-              <input style={{width: '75vw', outline:'none'}} class="form-control me-5" type="search" placeholder="Buscar Produto" aria-label="Search" />
-              <button class="btn btn-outline-primary" type="submit">Buscar</button>
+              <input style={{ width: '75vw', outline: 'none' }} class="form-control me-5" type="search" placeholder="Buscar Produto" aria-label="Search" value={filtro} onChange={(e) => setFiltro(e.target.value)} />
             </form>
           </div>
         </div>
       </nav>
       <section className='Purchase-Main-Content'>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={3}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}>
-            {produtos.map((item) => (
-              <SwiperSlide>
-              <div className='Purchase-Cards'>
-                <section class="card w-75 m-5 d-flex flex-wrap p-3">
-                <img class="card-img-top"src={`http://localhost:5000/${item.img_produto}`} />
-                  <div class="card-body">
-                    <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
-                    <p class="card-text text-center h-50">{item.ds_produto}</p>
-                    <a class="btn btn-primary w-100" onClick={() => {
-                      navigate('/product/DispenserPDDA')
-                    }}>Quero Ver!</a>
-                  </div>
-                </section>
-              </div>
-            </SwiperSlide>
-            ))}
-        </Swiper>
+          {produtos.map((item) => (
+                <div className='Purchase-Cards'>
+                  <section class="card w-75 m-5 d-flex flex-wrap p-3">
+                    <img class="card-img-top" src={`http://localhost:5000/${item.img_produto}`} />
+                    <div class="card-body">
+                      <h5 class="card-title text-center d-flex justify-content-center">{item.nm_produto}</h5>
+                      <p class="card-text text-center h-50">{item.ds_produto}</p>
+                      <a class="btn btn-primary w-100" onClick={() => {
+                        navigate('/product/DispenserPDDA')
+                      }}>Quero Ver!</a>
+                    </div>
+                  </section>
+                </div>
+          ))}
       </section>
       <footer>
         <Footer />

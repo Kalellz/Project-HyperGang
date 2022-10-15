@@ -1,8 +1,8 @@
 .Purchase-Main-Content{
-    *{
-        border: solid #fff 1px;
-    }
-    width: auto;
+    width: 98vw;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-around;

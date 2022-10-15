@@ -1,4 +1,4 @@
-import { alterimage ,alterimagecategory, listcategories, listproducts } from "../repo/productRepository.js";
+import { alterimage ,alterimagecategory, listcategories, listproducts, searchProductsName } from "../repo/productRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
@@ -47,6 +47,17 @@ server.put('/product/category/:id/imagem', upload.single('capa'), async (req, re
         const resposta = await alterimagecategory(image, id)
         if(resposta != 1) throw new Error('A imagem não pode ser salva.')
         resp.status(204)
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+server.get('/product/search', async (req, resp) => {
+    try{
+        const {name} = req.query
+        const resposta = await searchProductsName(name)
+        resp.send(resposta)
     } catch(err){
         resp.status(400).send({
             erro: err.message

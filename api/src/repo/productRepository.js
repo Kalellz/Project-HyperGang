@@ -2,7 +2,7 @@ import { con } from './connection.js'
 
 export async function listproducts(){
     const c = `
-    select * from tb_produto;
+    SELECT * FROM tb_produto;
     `
     const [resp] = await con.query(c)
     return resp
@@ -18,7 +18,7 @@ export async function alterimage(image, id){
 }
 export async function listcategories(){
     const c = `
-    select * from tb_categoria;
+    SELECT * FROM tb_categoria;
     `
     const [resp] = await con.query(c)
     return resp
@@ -31,4 +31,12 @@ export async function alterimagecategory(image, id){
 
     const [resp] = await con.query(c, [image, id])
     return resp.affectedRows;
+}
+export async function searchProductsName(name){
+    const c = `
+    SELECT * FROM   tb_produto 
+    WHERE           nm_produto LIKE ?`
+    
+    const [resp] = await con.query(c, [`%${name}%`])
+    return resp;
 }
