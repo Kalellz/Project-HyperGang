@@ -1,4 +1,4 @@
-import { login, logup, alterimage, verifUserEmail, showUser } from "../repo/userRepository.js";
+import { login, logup, alterimage, verifUserEmail, showUser, alterUser } from "../repo/userRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
@@ -43,7 +43,7 @@ server.put('/user/:id/imagem', upload.single('capa'), async (req, resp) => {
 
         const resposta = await alterimage(image, id)
         if(resposta != 1) throw new Error('A imagem não pode ser salva.')
-        resp.status(204)
+        resp.status(204).send()
     } catch(err){
         resp.status(400).send({
             erro: err.message
@@ -60,4 +60,28 @@ server.get('/user/:id', async (req, resp) => {
             erro: err.message
         })
 }})
+server.put('/user/:id', async (req, resp) => {
+    try{
+        const { id } = req.params
+        const user = req.body
+        const r = await alterUser(id, user)
+
+        if(!user.nome.trim())
+			throw new Error('Nome do usuario é obrigatório!')
+        if(!user.sobrenome.trim())
+			throw new Error('Sobrenome do usuario é obrigatório!')
+        if(!user.email.trim())
+			throw new Error('Email do usuario é obrigatório!')
+        if(!user.senha.trim())
+			throw new Error('Senha do usuario é obrigatório!')
+        if (r != 1) 
+			throw new Error('Usuario nao pôde ser alterado') 
+        else 
+			resp.status(204).send()
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 export default server;

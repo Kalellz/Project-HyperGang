@@ -4,13 +4,13 @@ import Footer from '../../common/Footer';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import storage from 'local-storage';
-import { showUser } from '../../../api/userApi.js'
+import { showUser, alterUser } from '../../../api/userApi.js'
 function App() {
     const [usuarioStorage] = useState(storage('usuario-logado'))
     const [usuario, setUsuario] = useState([])
     const [nome, setNome] = useState()
-    const [sobrenome, setSobrenome] = useState()
-    const [email, setEmail] = useState()
+    const [sobrenome, setSobrenome] = useState('')
+    const [email, setEmail] = useState('')
     const [senha, setSenha] = useState()
     const [situacaoNome, setSituacaoNome] = useState(0)
     const [situacaoSobrenome, setSituacaoSobrenome] = useState(0)
@@ -23,19 +23,30 @@ function App() {
         const r = await showUser(usuarioStorage.id)
         setUsuario(r)
     }
-
-    useEffect(() => {
-        alterarConfig()
-    }, [nome, sobrenome, email, senha])
     useEffect(() => {
         exibirUser()
         if (!usuario) {
             navigate('/')
         }
     }, [])
-    function alterarConfig() {
-        
+    function alterConfigVerification(){
+        if(!nome){
+            setNome(usuario.nm_usuario)
+        }
+        if(!sobrenome){
+            setSobrenome(usuario.sbr_usuario)
+        }
+        if(!email){
+            setEmail(usuario.ds_email)
+        }
+        if(!senha){
+            setSenha(usuario.ds_senha)
+        }
     }
+    async function alterarConfig() {
+        await alterUser(usuario.id_usuario, nome, sobrenome, email, senha)
+    }
+    console.log(nome)
     return (
         <main>
             <header>
@@ -56,8 +67,14 @@ function App() {
                                 </div>
                             }
                             {situacaoNome === 0
-                                ? <button onClick={() => setSituacaoNome(1)}><span>Alterar</span></button>
-                                : <button onClick={() => setSituacaoNome(0)}><span>Concluir</span></button>
+                                ? <button onClick={() => {
+                                    setSituacaoNome(1)
+                                    alterConfigVerification()
+                                }}><span>Alterar</span></button>
+                                : <button onClick={() => {
+                                    alterarConfig()
+                                    window.location.reload(false);
+                                }}><span>Concluir</span></button>
                             }
                         </article>
                         <article>
@@ -71,8 +88,14 @@ function App() {
                                 </div>
                             }
                             {situacaoSobrenome === 0
-                                ? <button onClick={() => setSituacaoSobrenome(1)}><span>Alterar</span></button>
-                                : <button onClick={() => setSituacaoSobrenome(0)}><span>Concluir</span></button>
+                                ? <button onClick={() => {
+                                    setSituacaoSobrenome(1)
+                                    alterConfigVerification()
+                                }}><span>Alterar</span></button>
+                                : <button onClick={() => {
+                                    alterarConfig()
+                                    window.location.reload(false);
+                                }}><span>Concluir</span></button>
                             }
 
                         </article>
@@ -87,8 +110,14 @@ function App() {
                                 </div>
                             }
                             {situacaoEmail === 0
-                                ? <button onClick={() => setSituacaoEmail(1)}><span>Alterar</span></button>
-                                : <button onClick={() => setSituacaoEmail(0)}><span>Concluir</span></button>
+                                ? <button onClick={() => {
+                                    setSituacaoEmail(1)
+                                    alterConfigVerification()
+                                }}><span>Alterar</span></button>
+                                : <button onClick={() => {
+                                    alterarConfig()
+                                    window.location.reload(false);
+                                }}><span>Concluir</span></button>
                             }
                         </article>
                         <div className='alterConfig-user-config-person'>

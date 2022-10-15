@@ -46,3 +46,15 @@ export async function showUser(id) {
 	const [res] = await con.query(c, [id]);
 	return res[0];
 }
+export async function alterUser(id, user){
+	const comando = `
+    UPDATE tb_usuario 
+    SET 	nm_usuario    	= ?,
+            sbr_usuario    	= ?,
+            ds_email      	= ?,
+            ds_senha		= ?
+    WHERE 	id_usuario 		= ?`
+
+	const [linhas] = await con.query(comando, [user.nome, user.sobrenome, user.email, user.senha, id])
+	return linhas.affectedRows
+}
