@@ -24,12 +24,21 @@
         div {
             width: 90%;
             height: 80%;
-
             .alterConfig-user-config-person {
                 height: 40%;
                 width: 100%;
                 display: flex;
                 align-items: center;
+                .alterConfig-button-2{
+                    height: 5vh;
+                    width: 25%;
+                    button{
+                        margin-left: 1em;
+                    }
+                    button:hover{
+                        transform: scale(0.9);
+                    }
+                }
             }
 
             article {
@@ -44,7 +53,6 @@
                     height: 40%;
                     width: 100%;
                     display: flex;
-
                     /* From uiverse.io by @Cornerstone-04 */
                     .input {
                         max-width: 190px;

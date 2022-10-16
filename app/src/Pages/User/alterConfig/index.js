@@ -16,10 +16,12 @@ function App() {
     const [situacaoSobrenome, setSituacaoSobrenome] = useState(0)
     const [situacaoEmail, setSituacaoEmail] = useState(0)
     const [situacaoSenha, setSituacaoSenha] = useState(0)
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [image, setImage] = useState()
 
     const navigate = useNavigate();
 
-    async function exibirUser(){
+    async function exibirUser() {
         const r = await showUser(usuarioStorage.id)
         setUsuario(r)
     }
@@ -29,24 +31,26 @@ function App() {
             navigate('/')
         }
     }, [])
-    function alterConfigVerification(){
-        if(!nome){
+    function alterConfigVerification() {
+        if (!nome) {
             setNome(usuario.nm_usuario)
         }
-        if(!sobrenome){
+        if (!sobrenome) {
             setSobrenome(usuario.sbr_usuario)
         }
-        if(!email){
+        if (!email) {
             setEmail(usuario.ds_email)
         }
-        if(!senha){
+        if (!senha) {
             setSenha(usuario.ds_senha)
         }
     }
     async function alterarConfig() {
         await alterUser(usuario.id_usuario, nome, sobrenome, email, senha)
     }
-    console.log(nome)
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+      };
     return (
         <main>
             <header>
@@ -122,7 +126,28 @@ function App() {
                         </article>
                         <div className='alterConfig-user-config-person'>
                             <article>
-                                <h1>Senha:</h1><button><span>Configurar</span></button>
+                                {!situacaoSenha
+                                    ? <h1>Senha:</h1>
+                                    : <div>
+                                        <h1>Senha:</h1>
+                                        <input value={senha} onChange={(e) => setSenha(e.target.value)} class="input" type={passwordShown ? "text" : "password"} />
+                                        <div className='alterConfig-button-2'>
+                                            <button onClick={togglePassword}>
+                                                Show Password
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                                {situacaoSenha === 0
+                                    ? <button onClick={() => {
+                                        setSituacaoSenha(1)
+                                        alterConfigVerification()
+                                    }}><span>Configurar</span></button>
+                                    : <button onClick={() => {
+                                        alterarConfig()
+                                        window.location.reload(false);
+                                    }}><span>Concluir</span></button>
+                                }
                             </article>
                             <article>
                                 <h1>Image:</h1><button><span>Configurar</span></button>

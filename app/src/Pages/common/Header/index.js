@@ -43,7 +43,7 @@ function Header() {
             <div className='user-config-header' onClick={() => navigate(`/user/config`)}>
               {!usuario.imagem 
               ? <img src={userDefaultIcon} />
-              : <img src={usuario.imagem} />
+              : <img src={`http://localhost:5000/${usuario.imagem}`}  />
               }
               <h1>{usuario.nome}</h1>
             </div>
