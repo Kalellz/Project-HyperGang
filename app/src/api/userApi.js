@@ -33,3 +33,13 @@ export async function alterUser(id, nome, sobrenome, email, senha){
   })
   return r.data
 }
+export async function alterImage(id, image){
+  let form = new FormData()
+  form.append('capa', image)
+  const r = await api.put(`http://localhost:5000/user/${id}/imagem`, form, {
+    headers: {
+      'Content-Type' : 'multipart/form-data'
+    }
+  })
+  return r.data
+}

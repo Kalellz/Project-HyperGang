@@ -4,7 +4,9 @@ import Footer from '../../common/Footer';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import storage from 'local-storage';
-import { showUser, alterUser } from '../../../api/userApi.js'
+import { showUser, alterUser, alterImage } from '../../../api/userApi.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
     const [usuarioStorage] = useState(storage('usuario-logado'))
     const [usuario, setUsuario] = useState([])
@@ -16,8 +18,9 @@ function App() {
     const [situacaoSobrenome, setSituacaoSobrenome] = useState(0)
     const [situacaoEmail, setSituacaoEmail] = useState(0)
     const [situacaoSenha, setSituacaoSenha] = useState(0)
+    const [situacaoImage, setSituacaoImage] = useState(0)
     const [passwordShown, setPasswordShown] = useState(false);
-    const [image, setImage] = useState()
+    const [image, setImage] = useState(undefined)
 
     const navigate = useNavigate();
 
@@ -45,17 +48,37 @@ function App() {
             setSenha(usuario.ds_senha)
         }
     }
+    function exibirImagem(imagem) {
+        if (typeof (imagem) == 'object') {
+            return URL.createObjectURL(imagem)
+        }
+    }
+    async function alterarImagem() {
+        await alterImage(usuario.id_usuario, image)
+    }
     async function alterarConfig() {
         await alterUser(usuario.id_usuario, nome, sobrenome, email, senha)
     }
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
-      };
+    };
     return (
         <main>
             <header>
                 <Header />
             </header>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
             <section className='alterConfig-Main'>
                 <section>
                     <h1>Suas Configurações</h1>
@@ -150,7 +173,37 @@ function App() {
                                 }
                             </article>
                             <article>
-                                <h1>Image:</h1><button><span>Configurar</span></button>
+                                {!situacaoImage
+                                    ? <h1>Imagem:</h1>
+                                    : <div>
+                                        <h1>Imagem:</h1>
+                                        <div className="input-group m-4">
+                                            <img src={exibirImagem(image)} />
+                                            <input type="file" className="form-control bg-dark text-white" onChange={e => setImage(e.target.files[0])} />
+                                        </div>
+                                    </div>
+                                }
+                                {situacaoImage === 0
+                                    ? <button onClick={() => {
+                                        setSituacaoImage(1)
+                                    }}><span>Configurar</span></button>
+                                    : <button onClick={() => {
+                                        alterarImagem()
+                                        toast('🦄 Relogue para ver sua nova foto!', {
+                                            position: "top-center",
+                                            autoClose: 5000,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                            theme: "dark",
+                                            });
+                                        setTimeout(() => {
+                                            window.location.reload(false);
+                                        }, 3000)
+                                    }}><span>Concluir</span></button>
+                                }
                             </article>
                         </div>
                     </div>

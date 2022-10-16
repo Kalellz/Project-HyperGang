@@ -13,10 +13,7 @@ function Header() {
     setTimeout(() => {
       navigate('/login')
     }, 500)
-
   }
-  useEffect(() => {
-  }, [])
   return (
     <header className='navbar fixed-top'>
       <div className='Header-Logo-Config'>
