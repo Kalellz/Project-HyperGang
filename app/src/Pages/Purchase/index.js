@@ -1,7 +1,6 @@
 import './screen.scss'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
-import dispensador1 from '../../Assets/images/Dispensador-image-1.jpg'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';

@@ -4,9 +4,6 @@ import Footer from '../../common/Footer'
 import { FaStar } from 'react-icons/fa'
 import { useEffect, useState } from "react";
 import Carousel from 'react-elastic-carousel'
-import dispensador1 from '../../../Assets/images/Dispensador-image-1.jpg'
-import dispensador2 from '../../../Assets/images/Dispensador-image-2.jpg'
-import dispensador3 from '../../../Assets/images/Dispensador-image-3.jpg'
 import coins from '../../../Assets/images/coins.png'
 import airport from '../../../Assets/images/airport.png'
 import { ListProductsId } from '../../../api/productApi';
@@ -48,8 +45,6 @@ function App() {
             <div className='products-View-Carousel'>
               <Carousel>
                 <img src={`http://localhost:5000/${produto.img_produto}`} class="w-75 shadow-lg bg-body rounded " />
-                <img src={dispensador3} class="w-75 shadow-lg bg-body rounded" />
-                <img src={dispensador2} class="w-75 shadow-lg bg-body rounded" />
               </Carousel>
             </div>
           </div>

@@ -1,10 +1,4 @@
 import '../../home.scss';
-import houseicon from '../../../../Assets/images/house.png'
-import bearicon from '../../../../Assets/images/bear.png'
-import eletronicicon from '../../../../Assets/images/eletronic.png'
-import fitnessicon from '../../../../Assets/images/fitness.png'
-import repairicon from '../../../../Assets/images/repair.png'
-import medicicon from '../../../../Assets/images/stethoscope.png'
 import { Listcategories } from '../../../../api/productApi.js'
 import { useEffect, useState } from 'react';
 function App() {
