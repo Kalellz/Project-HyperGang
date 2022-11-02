@@ -1,4 +1,4 @@
-import { createCategory, createProduct, alterimage ,alterimagecategory, listcategories, listproducts, searchProductsId, searchProductsName } from "../repo/productRepository.js";
+import { createCategory, createProduct, alterimage ,alterimagecategory, listcategories, listproducts, searchProductsId, searchProductsName, alterProduct, deleteProduct } from "../repo/productRepository.js";
 import { Router } from "express";
 import multer from 'multer';
 
@@ -116,6 +116,51 @@ server.get('/product/search/:id', async (req, resp) => {
         const {id} = req.params
         const resposta = await searchProductsId(id)
         resp.send(resposta)
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+server.put('/product/:id', async (req, resp) => {
+    try{
+        const { id } = req.params;
+        const product = req.body;
+
+        if(!product.nome.trim())
+			throw new Error('Nome do produto é obrigatório!')
+		if(!product.idcategoria)
+			throw new Error('Categoria do produto é obrigatório!')
+		if(!product.descricao.trim())
+			throw new Error('Descrição do produto é obrigatório!')
+		if(!product.preco)
+			throw new Error('Preço do produto é obrigatório!')
+
+		if(product.preco < 0) 
+			throw new Error('Digite um preço válido')
+
+		if(product.nome.length > 80)
+			throw new Error('Nome excede o tamanho permitido')
+		if(product.descricao.length > 200)
+			throw new Error('Descrição excede o tamanho permitido')
+		if(product.preco.length > 15)
+			throw new Error('Preço excede o tamanho permitido')
+
+        const r = await alterProduct(id, product)
+        resp.send(r)
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+server.delete('/product/:id', async (req, resp) => {
+    try{
+        const { id } = req.params;
+        const r = await deleteProduct(id)
+        if(r != 1) throw new Error('Produto não pode ser removido')
+        resp.status(204).send()
     } catch(err){
         resp.status(400).send({
             erro: err.message

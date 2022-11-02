@@ -9,7 +9,7 @@ function App() {
     setProdutos(await ListProducts())
   }
   async function DestaqueProduct() {
-    const produto = await ListProductsId(1)
+    const produto = await ListProductsId(2)
     setProdutoDestaque(produto)
   }
   useEffect(() => {
@@ -23,15 +23,16 @@ function App() {
       <div className="Highlights-Main-Content">
         <h1 className='fs-4 m-0 fw-bold'>Protudos em destaque</h1>
         <hr className='mt-1' />
-        <div>
+
+        <div className='d-flex'>
 
           {produtoDestaque.map((item) => (
             <div className="Highlights-Product-Number1">
               <div class="card w-100 h-100 d-flex align-items-center justify-content-evenly">
-                <img src={`http://localhost:5000/${item.img_produto}`} className='h-75 rounded-circle'/>
+                <img src={`http://localhost:5000/${item.img_produto}`} className='w-75 rounded-circle'/>
                 <div className='text-center'>
                   <h1 className='fs-3 text-dark'>{item.nm_produto}</h1>
-                  <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ {item.vl_produto},99</h1>
+                  <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ {item.vl_produto -1},90</h1>
                   <button type="button" class="btn btn-dark mt-5">Quero Ver!</button>
                 </div>
               </div>
@@ -40,12 +41,12 @@ function App() {
           <div className="Highlights-Products">
             {produtos.slice(0, 6).map((item) => (
               <div class="card">
-                <img class="card-img" src={`http://localhost:5000/${item.img_produto}`} />
+                <img class="ms-5 card-img w-50" src={`http://localhost:5000/${item.img_produto}`} />
                 <div class="card-info">
                   <p class="text-title">{item.nm_produto}</p>
                 </div>
                 <div class="card-footer">
-                  <span class="text-title">R${item.vl_produto}.00</span>
+                  <span class="text-title">R${item.vl_produto -1}.90</span>
                   <div class="card-button" onClick={() => navigate(`/product/${item.id_produto}`)}>
                     <svg class="svg-icon" viewBox="0 0 20 20">
                       <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>

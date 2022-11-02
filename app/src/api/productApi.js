@@ -56,3 +56,17 @@ export async function ListProductsId(Id){
     const r = await api.get(`product/search/${Id}`)
     return r.data
 }
+export async function DeleteProduct(Id){
+    const r = await api.delete(`/product/${Id}`)
+    return r.status
+}
+export async function alterProduct(Id, nome, descricao, preco, quantidade, idcategoria){
+    const r = await api.put(`/product/${Id}`, {
+        nome: nome,
+        descricao: descricao,
+        preco: preco ,
+        quantidade: quantidade,
+        idcategoria: idcategoria
+      });
+      return r.data
+}

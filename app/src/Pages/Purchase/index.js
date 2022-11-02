@@ -4,7 +4,7 @@ import Footer from '../common/Footer'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ListProducts, ListProductsName } from '../../api/productApi.js'
+import { ListProducts, ListProductsName, Listcategories } from '../../api/productApi.js'
 import 'swiper/css';
 
 function App() {
@@ -12,8 +12,12 @@ function App() {
   const [produtos, setProdutos] = useState([])
   const [filtro, setFiltro] = useState("")
   const [category, setCategory] = useState(0)
+  const [categorias, setCategorias] = useState([])
   async function ListarProdutos() {
     setProdutos(await ListProducts())
+  }
+  async function ListarCategorias() {
+    setCategorias(await Listcategories())
   }
   async function Filtrar() {
     const resp = await ListProductsName(filtro, category);
@@ -24,7 +28,9 @@ function App() {
   }, [category, filtro])
   useEffect(() => {
     ListarProdutos()
+    ListarCategorias()
   }, [])
+  
   return (
     <main>
       <header>
@@ -38,13 +44,10 @@ function App() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <select value={category} onChange={(e) => setCategory(Number(e.target.value))} class="form-select" aria-label="Default select example">
-                <option value="0">Geral</option>
-                <option value="1">Casa e Cozinha</option>
-                <option value="2">Brinquedos</option>
-                <option value="3">Eletronicos</option>
-                <option value="4">Fitness</option>
-                <option value="5">Ferramentas</option>
-                <option value="6">Saúde e Beleza</option>
+              <option value="0">Geral</option>
+              {categorias.map((item) => (
+                  <option value={item.id_categoria} >{item.nm_categoria}</option>
+                ))}
               </select>
             </ul>
             <form class="d-flex" role="search">

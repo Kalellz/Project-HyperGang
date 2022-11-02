@@ -70,3 +70,24 @@ export async function searchProductsId(id){
     const [resp] = await con.query(c, [id])
     return resp;
 }
+export async function alterProduct(id, produto){
+    const c = `
+    UPDATE  tb_produto
+    SET     nm_produto      = ?,
+            ds_produto      = ?,
+            vl_produto      = ?,
+            qnt_produto     = ?,
+            id_categoria    = ?
+    WHERE   id_produto      = ?`
+
+    const [resp] = await con.query(c, [produto.nome, produto.descricao, produto.preco, produto.quantidade, produto.idcategoria, id])
+    return produto;
+}
+export async function deleteProduct(id){
+    const c = `
+    DELETE FROM tb_produto
+    WHERE       id_produto = ?`
+
+    const [resp] = await con.query(c, [id])
+    return resp.affectedRows;
+}
