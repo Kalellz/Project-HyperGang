@@ -1,5 +1,4 @@
 import '../../home.scss';
-import Dispenser from '../../../../Assets/images/Dispensador-image-1.jpg'
 import { ListProducts, ListProductsId, ViewImage } from '../../../../api/productApi.js'
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -24,13 +23,12 @@ function App() {
       <div className="Highlights-Main-Content">
         <h1 className='fs-4 m-0 fw-bold'>Protudos em destaque</h1>
         <hr className='mt-1' />
-
-        <div className='d-flex'>
+        <div>
 
           {produtoDestaque.map((item) => (
             <div className="Highlights-Product-Number1">
               <div class="card w-100 h-100 d-flex align-items-center justify-content-evenly">
-                <img src={`http://localhost:5000/${item.img_produto}`} className='w-75 rounded-circle' />
+                <img src={`http://localhost:5000/${item.img_produto}`} className='h-75 rounded-circle'/>
                 <div className='text-center'>
                   <h1 className='fs-3 text-dark'>{item.nm_produto}</h1>
                   <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ {item.vl_produto},99</h1>

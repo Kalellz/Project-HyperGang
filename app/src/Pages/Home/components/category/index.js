@@ -17,7 +17,7 @@ function App() {
         {category.map((item) => (
           <div className="Category-item">
             {item.img_categoria 
-            ? <img className='w-100' src={`http://localhost:5000/${item.img_categoria}`} />
+            ? <img className='rounded-circle' src={`http://localhost:5000/${item.img_categoria}`}/>
             : <div></div>
             }
             <h1 className='fs-4'>{item.nm_categoria}</h1>
