@@ -1,5 +1,4 @@
 import './header.scss'
-import logo from '../../../Assets/images/Logo/UtilityOutlet.svg';
 import userDefaultIcon from '../../../Assets/images/user-icon.jpg';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
@@ -16,9 +15,6 @@ function Header() {
   }
   return (
     <header className='navbar fixed-top'>
-      <div className='Header-Logo-Config'>
-        <img src={logo} />
-      </div>
       <div>
       </div>
       <div className='Header-Links-Config'>
