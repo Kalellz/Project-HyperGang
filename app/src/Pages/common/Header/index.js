@@ -19,6 +19,12 @@ function Header() {
       </div>
       <div className='Header-Links-Config'>
         <ul class="nav justify-content-end">
+          {usuario.admin === 1 
+          ? <li class="nav-item">
+          <a class="nav-link fw-semibold text-white" href="/admin">Tela Admin</a>
+          </li>
+        : <div></div>
+          }
           <li class="nav-item">
             <a class="nav-link fw-semibold text-white" href="/">Home</a>
           </li>

@@ -1,0 +1,13 @@
+.Create-Product-Main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label{
+        width: 25em;
+    }
+    input{
+        display: flex;
+        width: 100%;
+    }
+}

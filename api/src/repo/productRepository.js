@@ -7,6 +7,25 @@ export async function listproducts(){
     const [resp] = await con.query(c)
     return resp
 }
+export async function createProduct(product){
+    const c = `
+    INSERT INTO tb_produto(nm_produto, ds_produto, vl_produto, qnt_produto, id_categoria)
+        VALUES (?, ?, ?, ?, ?);
+    `
+    const [resp] = await con.query(c, [product.nome, product.descricao, product.preco, product.quantidade, product.idcategoria ])
+    product.id = resp.insertId
+    return product
+}
+export async function createCategory(categoria){
+    const c = `
+    INSERT INTO tb_categoria(nm_categoria)
+    VALUES (?);
+    `
+    const [resp] = await con.query(c, [categoria.nome])
+    categoria.id = resp.insertId
+    return categoria
+}
+
 export async function alterimage(image, id){
     const c = `
     UPDATE  tb_produto

@@ -1,15 +1,22 @@
 import '../../home.scss';
 import Dispenser from '../../../../Assets/images/Dispensador-image-1.jpg'
-import { ListProducts } from '../../../../api/productApi.js'
+import { ListProducts, ListProductsId, ViewImage } from '../../../../api/productApi.js'
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 function App() {
   const [produtos, setProdutos] = useState([])
+  const [produtoDestaque, setProdutoDestaque] = useState([])
   async function ListarProdutos() {
     setProdutos(await ListProducts())
   }
+  async function DestaqueProduct() {
+    const produto = await ListProductsId(1)
+    setProdutoDestaque(produto)
+  }
   useEffect(() => {
     ListarProdutos()
+    DestaqueProduct()
+    console.log(produtoDestaque)
   }, [])
   const navigate = useNavigate();
   return (
@@ -19,20 +26,23 @@ function App() {
         <hr className='mt-1' />
 
         <div className='d-flex'>
-          <div className="Highlights-Product-Number1">
-            <div class="card w-100 h-100 d-flex align-items-center justify-content-evenly">
-              <img src={Dispenser} className='w-75 rounded-circle' />
-              <div className='text-center'>
-                <h1 className='fs-3 text-dark'>Dispenser Pasta De Dente Automático</h1>
-                <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ 255,90</h1>
-                <button type="button" class="btn btn-dark mt-5">Quero Ver!</button>
+
+          {produtoDestaque.map((item) => (
+            <div className="Highlights-Product-Number1">
+              <div class="card w-100 h-100 d-flex align-items-center justify-content-evenly">
+                <img src={`http://localhost:5000/${item.img_produto}`} className='w-75 rounded-circle' />
+                <div className='text-center'>
+                  <h1 className='fs-3 text-dark'>{item.nm_produto}</h1>
+                  <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ {item.vl_produto},99</h1>
+                  <button type="button" class="btn btn-dark mt-5">Quero Ver!</button>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
           <div className="Highlights-Products">
-            {produtos.map((item) => (
+            {produtos.slice(0, 6).map((item) => (
               <div class="card">
-                <img class="card-img"src={`http://localhost:5000/${item.img_produto}`} />
+                <img class="card-img" src={`http://localhost:5000/${item.img_produto}`} />
                 <div class="card-info">
                   <p class="text-title">{item.nm_produto}</p>
                 </div>

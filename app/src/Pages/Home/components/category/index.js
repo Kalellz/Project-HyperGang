@@ -16,7 +16,10 @@ function App() {
       <div className='Category-Content-itens'>
         {category.map((item) => (
           <div className="Category-item">
-            <img src={`http://localhost:5000/${item.img_categoria}`} />
+            {item.img_categoria 
+            ? <img className='w-100' src={`http://localhost:5000/${item.img_categoria}`} />
+            : <div></div>
+            }
             <h1 className='fs-4'>{item.nm_categoria}</h1>
           </div>))}
       </div>

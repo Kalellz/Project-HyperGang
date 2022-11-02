@@ -2,8 +2,8 @@ import { con } from './connection.js'
 
 export async function logup(nome, sobrenome, email, senha){
     const c = `
-    INSERT INTO tb_usuario(nm_usuario, sbr_usuario, ds_email, ds_senha)
-        VALUES(?, ?, ?, ?);`
+    INSERT INTO tb_usuario(nm_usuario, sbr_usuario, ds_email, ds_senha, vr_admin)
+        VALUES(?, ?, ?, ?, 0);`
 
     const [resp] = await con.query(c, [nome, sobrenome, email, senha])
     return resp;
@@ -24,6 +24,7 @@ export async function login(email, senha){
                 sbr_usuario         sobrenome,
                 ds_email            email,
                 ds_senha            senha,
+                vr_admin			admin,
                 img_icon            imagem
         FROM    tb_usuario
         WHERE   ds_email =          ?

@@ -7,21 +7,9 @@ header {
     display: flex;
     justify-content: space-between;
 
-    .Header-Logo-Config {
-        width: 10%;
-        display: flex;
-        justify-content: center;
-        height: 8vh;
-
-        img {
-            height: 100%;
-            width: 4em;
-        }
-    }
-
     .Header-Links-Config {
         height: 8vh;
-        width: 35%;
+        width: 40%;
         display: flex;
         justify-content: center;
         align-items: center;

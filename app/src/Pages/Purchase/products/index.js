@@ -3,7 +3,6 @@ import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 import { FaStar } from 'react-icons/fa'
 import { useEffect, useState } from "react";
-import Carousel from 'react-elastic-carousel'
 import coins from '../../../Assets/images/coins.png'
 import airport from '../../../Assets/images/airport.png'
 import { ListProductsId } from '../../../api/productApi';
@@ -43,9 +42,7 @@ function App() {
               <a className='products-nav-links-selected'>{produto.nm_produto}</a>
             </nav>
             <div className='products-View-Carousel'>
-              <Carousel>
                 <img src={`http://localhost:5000/${produto.img_produto}`} class="w-75 shadow-lg bg-body rounded " />
-              </Carousel>
             </div>
           </div>
           <div className='products-Description'>
@@ -66,7 +63,6 @@ function App() {
                 <h2>Em até 12x de <span>R$ 25,71</span></h2>
               </div>
               <div>
-                <h1 className='fs-4 pt-4 pb-2'>Cores</h1>
                 <ul></ul>
                 {/* CORES */}
               </div>
