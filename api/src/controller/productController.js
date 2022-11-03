@@ -1,7 +1,11 @@
 import { createCategory, createProduct, alterimage ,alterimagecategory, listcategories, listproducts, searchProductsId, searchProductsName, alterProduct, deleteProduct } from "../repo/productRepository.js";
 import { Router } from "express";
 import multer from 'multer';
-
+import {
+    calcularPrecoPrazo,
+    consultarCep,
+    rastrearEncomendas,
+  } from 'correios-brasil';
 const upload = multer({ dest : 'storage/productsIcon' })
 const server = Router();
 
@@ -161,6 +165,30 @@ server.delete('/product/:id', async (req, resp) => {
         const r = await deleteProduct(id)
         if(r != 1) throw new Error('Produto não pode ser removido')
         resp.status(204).send()
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/correio/:cep', async (req, resp) => {
+    try{
+    const { cep } = req.params
+    let args = {
+    sCepOrigem: '81200100',
+    sCepDestino: cep,
+    nVlPeso: '1',
+    nCdFormato: '1',
+    nVlComprimento: '20',
+    nVlAltura: '20',
+    nVlLargura: '20',
+    nCdServico: ['04014'],
+    nVlDiametro: '0',
+    };
+    calcularPrecoPrazo(args).then(response => {
+    resp.send(response);
+});
     } catch(err){
         resp.status(400).send({
             erro: err.message
