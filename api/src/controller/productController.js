@@ -1,11 +1,7 @@
 import { createCategory, createProduct, alterimage ,alterimagecategory, listcategories, listproducts, searchProductsId, searchProductsName, alterProduct, deleteProduct } from "../repo/productRepository.js";
 import { Router } from "express";
 import multer from 'multer';
-import {
-    calcularPrecoPrazo,
-    consultarCep,
-    rastrearEncomendas,
-  } from 'correios-brasil';
+import { calcularPrecoPrazo,consultarCep, rastrearEncomendas } from 'correios-brasil';
 const upload = multer({ dest : 'storage/productsIcon' })
 const server = Router();
 
@@ -189,6 +185,19 @@ server.get('/correio/:cep', async (req, resp) => {
     calcularPrecoPrazo(args).then(response => {
     resp.send(response);
 });
+    } catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/correio/busca/:cep', async (req, resp) => {
+    try{
+    const { cep } = req.params
+    consultarCep(cep).then(response => {
+        resp.send(response.data);
+      });
     } catch(err){
         resp.status(400).send({
             erro: err.message

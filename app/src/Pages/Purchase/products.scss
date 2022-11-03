@@ -103,6 +103,12 @@ $primary-color : #183691;
                     height: 100%;
                 }
                 .products-Description-Buy{
+                    .cep-inputs{
+                        button{
+                            margin-left: 1em;
+                            width: 50%;
+                        }
+                    }
                     padding-top: 2em;
                     height: auto;
                     h1{
@@ -162,7 +168,7 @@ $primary-color : #183691;
                 }
                 .products-Description-Frete{
                     width: 30vw;
-                    margin-top: 5em;
+                    margin-top: 1em;
                     display: flex;
                     img{
                         

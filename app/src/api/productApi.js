@@ -70,3 +70,11 @@ export async function alterProduct(Id, nome, descricao, preco, quantidade, idcat
       });
       return r.data
 }
+export async function BuscarCorreio(cep){
+    const r = await api.get(`correio/${cep}`)
+    return r.data
+}
+export async function BuscarCorreioUser(cep){
+    const r = await api.get(`correio/busca/${cep}`)
+    return r.data
+}
