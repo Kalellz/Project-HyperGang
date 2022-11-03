@@ -20,7 +20,8 @@ function App() {
   const [cepUser, setCepUser] = useState();
   const [infosFrete, setInfosFrete] = useState({});
   const [userCorreio, setUserCorreio] = useState({});
-  const [data, setData] = useState(new Date)
+  const [data, setData] = useState(new Date());
+  const [aparecer, setAparecer] = useState(0);
   const colorStar = { orange: "#F6D523", gray: "#B4B4B4" };
 
   async function carregarProduto() {
@@ -99,6 +100,7 @@ function App() {
                 <input
                   type="number"
                   min={1}
+                  max={produto.qnt_produto}
                   placeholder="quantidade"
                   value={quantidade}
                   onChange={(e) => setQuantidade(e.target.value)}
@@ -106,31 +108,42 @@ function App() {
                 <button>Comprar</button>
                 <h1>Calcular Frete</h1>
                 <div className="cep-inputs">
-                <input
-                  type="number"
-                  min={1}
-                  placeholder="Seu Cep"
-                  value={cepUser}
-                  onChange={(e) => setCepUser(e.target.value)}
-                />
-                <button onClick={() => {
-                  carregarCorreioUser();
-                  carregarCorreio()
-                }}>Buscar</button>
+                  <input
+                    type="number"
+                    min={1}
+                    placeholder="Seu Cep"
+                    value={cepUser}
+                    onChange={(e) => setCepUser(e.target.value)}
+                  />
+                  <button
+                    onClick={() => {
+                      carregarCorreioUser();
+                      carregarCorreio();
+                      setAparecer(1);
+                    }}
+                  >
+                    Buscar
+                  </button>
                 </div>
               </div>
               {cepUser ? (
-                <div className="products-Description-Frete">
-                  <img src={airport} />
-                  <h5>
-                    <span>Frete por {infosFrete.Valor}</span> para {''}
-                    <span>
-                    {userCorreio.bairro}, {userCorreio.uf} e Região
-                    </span>
-                    <br />
-                    Entrega estimada entre {data.getDay() + 10} do {data.getMonth() + 2} e {data.getDay() + 2} do {data.getMonth() - 9}.
-                  </h5>
-                </div>
+                aparecer === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="products-Description-Frete">
+                    <img src={airport} />
+                    <h5>
+                      <span>Frete por {infosFrete.Valor}</span> para {""}
+                      <span>
+                        {userCorreio.bairro}, {userCorreio.uf} e Região
+                      </span>
+                      <br />
+                      Entrega estimada entre {data.getDay() + 3} do{" "}
+                      {data.getMonth() + 2} e {data.getDay() - 2} do{" "}
+                      {data.getMonth() - 9}.
+                    </h5>
+                  </div>
+                )
               ) : (
                 <div> </div>
               )}
