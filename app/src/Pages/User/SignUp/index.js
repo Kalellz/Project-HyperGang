@@ -40,7 +40,7 @@ function Home() {
                 </button>
             </div>
             <section>
-                <h1 className='Sign-Title'>Bem-vindo ao Utilit Outlet!</h1>
+                <h1 className='Sign-Title'>Bem-vindo a Hyper Gang!</h1>
                 <div className='Sign-Infos'>
                     <div className='Sign-Inputs'>
                         <div className="form__group field">

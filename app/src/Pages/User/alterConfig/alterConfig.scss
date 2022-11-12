@@ -144,3 +144,146 @@
         }
     }
 }
+@media only screen and (max-width: 720px) {
+    .alterConfig-Main {
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        section {
+            width: 95%;
+            height: 95%;
+            border: solid #555 2px;
+            border-radius: 2em;
+            background-color: #202020;
+            box-shadow: 1em 1em 1em 0px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            h1 {
+                padding: 2em 0;
+                color: #fff;
+            }
+    
+            div {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                height: auto;
+                .alterConfig-user-config-person {
+                    height: 40%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+    
+                article {
+                    height: 20%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    text-align: center;
+                    
+                    div {
+                        height: auto;
+                        width: 100%;
+                        display: flex;
+                        /* From uiverse.io by @Cornerstone-04 */
+                        .input {
+                            max-width: 190px;
+                            height: 30px;
+                            border: 2px solid transparent;
+                            outline: none;
+                            border-bottom: 2px solid #3f3f3f;
+                            caret-color: #3f3f3f;
+                            color: #fff;
+                            background-color: #212121;
+                            padding: 5px;
+                            transition: .22s linear;
+                            font-family: monospace;
+                            letter-spacing: 1px;
+                        }
+                        .file{
+                            width: 100%;
+                        }
+                        .input:focus {
+                            border: 2px solid #fff;
+                            caret-color: #fff;
+                            color: #fff;
+                            box-shadow: 1px 1px 5px #070707;
+                        }
+    
+                        .input:focus::placeholder {
+                            color: #fa4753;
+                        }
+                        img{
+                            height: 7em;
+                            width: 50%;
+                        }
+                    }
+    
+                    h1 {
+                        width: auto;
+                        height: 4vh;
+                        font-size: 1.2em;
+                        text-align: start;
+                    }
+    
+                    p {
+                        color: #949494;
+                        text-align: start;
+                        width: auto;
+                        padding-top: .3em;
+                        padding-left: 2em;
+                        height: 4vh;
+                        font-size: 1em;
+                    }
+    
+                    /* From uiverse.io by @NorthFishHasNa */
+                    button {
+                        display: inline-block;
+                        border-radius: 1em;
+                        background-color: #161616;
+                        border: none;
+                        color: #FFFFFF;
+                        text-align: center;
+                        font-size: .8em;
+                        padding: .5em;
+                        width: 130px;
+                        transition: all 0.5s;
+                        cursor: pointer;
+                    }
+    
+                    button span {
+                        cursor: pointer;
+                        display: inline-block;
+                        position: relative;
+                        transition: 0.5s;
+                    }
+    
+                    button span:after {
+                        content: '»';
+                        position: absolute;
+                        opacity: 0;
+                        top: 0;
+                        right: -15px;
+                        transition: 0.5s;
+                    }
+    
+                    button:hover span {
+                        padding-right: 15px;
+                    }
+    
+                    button:hover span:after {
+                        opacity: 1;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

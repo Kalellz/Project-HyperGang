@@ -1,170 +1,292 @@
-$primary-color : #183691;
+$primary-color: #183691;
 .Category-Main {
-    height: 50vh;
-    background-color: #F7F7F7;
+  height: 50vh;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  padding: 4em;
+
+  hr {
+    color: #183691;
+    width: 25%;
+    border: solid $primary-color 1px;
+  }
+
+  .Category-Content-itens {
     display: flex;
-    flex-direction: column;
-    padding: 4em;
+    justify-content: space-around;
 
-    hr {
-        color: #183691;
-        width: 25%;
-        border: solid $primary-color 1px;
+    .Category-item {
+      cursor: pointer;
+      margin: 0 1.5em 0 0;
+      border-radius: 1em;
+      height: 25vh;
+      width: 15vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      transition: all 0.5s;
 
+      img {
+        width: 5em;
+      }
     }
 
-    .Category-Content-itens {
-        display: flex;
-        justify-content: space-around;
-
-        .Category-item {
-            cursor: pointer;
-            margin: 0 1.5em 0 0;
-            border-radius: 1em;
-            height: 25vh;
-            width: 15vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            transition: all .5s;
-
-            img {
-                width: 5em;
-            }
-        }
-
-        .Category-item:hover {
-            transform: scale(1.05);
-        }
+    .Category-item:hover {
+      transform: scale(1.05);
     }
+  }
 }
 
 .Highlights-Main {
-    height: 110vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4em;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4em;
 
-    .Highlights-Main-Content {
-        hr {
-            color: #183691;
-            width: 25%;
-            border: solid $primary-color 1px;
-        }
-
-        .Highlights-Products {
-            width: 80vw;
-            display: flex;
-            flex-wrap: wrap; 
-            height: 80vh;
-            /* From uiverse.io by @alexruix */
-            .card {
-                margin: 2em 0 0 2em;
-                width: 25%;
-                height: 40%;
-                padding: .4em;
-                background: #f5f5f5;
-                overflow: visible;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                transition: .3s ease;
-                *{
-                    user-select: none;
-                }
-            }
-
-            .card-img {
-                background-color: #ffcaa6;
-                height: 50%;
-                width: 100%;
-                border-radius: .5rem;
-            }
-
-            .card-info {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                width: 100%;
-                height: 30%;
-                padding-top: 10%;
-            }
-
-            svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .card-footer {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-top: 10px;
-                border-top: 1px solid #ddd;
-            }
-
-            /*Text*/
-            .text-title {
-                font-weight: 900;
-                font-size: 1.1em;
-                line-height: 1.5;
-            }
-
-            /*Button*/
-            .card-button {
-                border: 1px solid #252525;
-                display: flex;
-                padding: .3em;
-                cursor: pointer;
-                border-radius: 50px;
-                transition: .3s ease-in-out;
-            }
-
-            /*Hover*/
-            .card:hover {
-                transform: translateY(-10%);
-                box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
-            }
-
-            .card-button:hover {
-                border: 1px solid $primary-color;
-                background-color: $primary-color;
-            }
-
-        }
+  .Highlights-Main-Content {
+    hr {
+      color: #183691;
+      width: 25%;
+      border: solid $primary-color 1px;
     }
 
-    .Highlights-Product-Number1 {
-        width: 50%;
-        height: 80vh;
+    .Highlights-Products {
+      width: 80vw;
+      display: flex;
+      flex-wrap: wrap;
+      height: 80vh;
+      /* From uiverse.io by @alexruix */
+      .card {
+        margin: 2em 0 0 2em;
+        width: 25%;
+        height: 40%;
+        padding: 0.4em;
+        background: #f5f5f5;
+        overflow: visible;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: 0.3s ease;
+        * {
+          user-select: none;
+        }
+      }
+
+      .card-img {
+        background-color: #ffcaa6;
+        height: 50%;
+        width: 100%;
+        border-radius: 0.5rem;
+      }
+
+      .card-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 30%;
+        padding-top: 10%;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .card-footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+      }
+
+      /*Text*/
+      .text-title {
+        font-weight: 900;
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+
+      /*Button*/
+      .card-button {
+        border: 1px solid #252525;
+        display: flex;
+        padding: 0.3em;
+        cursor: pointer;
+        border-radius: 50px;
+        transition: 0.3s ease-in-out;
+      }
+
+      /*Hover*/
+      .card:hover {
+        transform: translateY(-10%);
+        box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px,
+          rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+      }
+
+      .card-button:hover {
+        border: 1px solid $primary-color;
+        background-color: $primary-color;
+      }
     }
+  }
+
+  .Highlights-Product-Number1 {
+    width: 50%;
+    height: 80vh;
+  }
 }
 
 .About-Main {
-    height: 60vh;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  padding: 4em;
+  background-color: #f7f7f7;
+
+  hr {
+    color: #183691;
+    width: 25%;
+    border: solid $primary-color 1px;
+  }
+
+  .About-Main-Content {
+    width: 90vw;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    div {
+      height: 80%;
+      margin-right: 5em;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 720px) {
+  .Category-Main {
+    height: auto;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 2em;
+    hr {
+      color: #183691;
+      width: 25%;
+      border: solid $primary-color 1px;
+    }
+
+    .Category-Content-itens {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      .Category-item {
+        cursor: pointer;
+        margin: 0 1.5em 0 0;
+        border-radius: 1em;
+        height: 25vh;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        transition: all 0.5s;
+        img {
+          width: 5em;
+        }
+      }
+    }
+  }
+
+  .Highlights-Main {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 4em;
-    background-color: #F7F7F7;
+    justify-content: flex-start;
+    padding: 1em;
+    .Highlights-Main-Content {
+      width: 100%;
+      .Highlights-Products {
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        .card {
+          margin: 2em 0 0 2em;
+          width: 40%;
+          height: 40%;
+          padding: 0.4em;
+          background: #f5f5f5;
+          overflow: visible;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          transition: 0.3s ease;
+          * {
+            user-select: none;
+          }
+        }
+
+        .card-img {
+          display: none;
+        }
+
+        .card-footer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 10px;
+          border-top: 1px solid #ddd;
+        }
+      }
+    }
+
+    .Highlights-Product-Number1 {
+      display: none;
+    }
+  }
+
+  .About-Main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    background-color: #f7f7f7;
 
     hr {
-        color: #183691;
-        width: 25%;
-        border: solid $primary-color 1px;
+      color: #183691;
+      width: 25%;
+      border: solid $primary-color 1px;
     }
 
     .About-Main-Content {
-        width: 90vw;
-        height: 50vh;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+      width: 100%;
+      height: auto;
+      display: flex;
 
-        div {
-            height: 80%;
-            margin-right: 5em;
-        }
+      div {
+        height: 100%;
+        margin-right: 0;
+      }
     }
+  }
 }

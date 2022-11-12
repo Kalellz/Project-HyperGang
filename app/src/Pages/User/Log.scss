@@ -237,3 +237,242 @@
         font-size: 1.1em;
     }
 }
+
+
+
+
+@media only screen and (max-width: 720px) {
+    .Sign-Main {
+        align-items: flex-start;
+        section {
+            width: 100%;
+            height: 60vh;
+            background-color: #232323;
+            border-radius: 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+            .Sign-Infos {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                width: 95%;
+                height: 80%;
+
+    
+                .Sign-Inputs {
+    
+                    /* From uiverse.io by @mrhyddenn */
+                    .form__group {
+                        position: relative;
+                        padding: 1em 0 0;
+                        margin-top: 10px;
+                        width: 90vw;
+                    }
+    
+                    .form__field {
+                        font-family: inherit;
+                        width: 100%;
+                        border: none;
+                        border-bottom: 2px solid #9b9b9b;
+                        outline: 0;
+                        font-size: .8em;
+                        color: #9b9b9b;
+                        padding: 7px 0;
+                        background: transparent;
+                        transition: border-color 0.2s;
+                    }
+    
+                    .form__field::placeholder {
+                        color: transparent;
+                    }
+    
+                    .form__field:placeholder-shown~.form__label {
+                        font-size: 17px;
+                        cursor: text;
+                        top: 20px;
+                    }
+    
+                    .form__label {
+                        position: absolute;
+                        top: 0;
+                        display: block;
+                        transition: 0.3s;
+                        font-size: 17px;
+                        color: #9b9b9b;
+                        pointer-events: none;
+                    }
+    
+                    .form__field:focus {
+                        padding-bottom: 6px;
+                        font-weight: 700;
+                        border-width: 3px;
+                        border-image: linear-gradient(to right, #ffffff, #fff);
+                        border-image-slice: 1;
+                    }
+    
+                    .form__field:focus~.form__label {
+                        position: absolute;
+                        top: 0;
+                        display: block;
+                        transition: 0.2s;
+                        font-size: 17px;
+                        color: #fff;
+                        font-weight: 700;
+                    }
+    
+                    /* reset input */
+                    .form__field:required,
+                    .form__field:invalid {
+                        box-shadow: none;
+                    }
+                }
+            }
+    
+            .Sign-Button {
+                button {
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    padding: 10px 1.5em;
+                    transition: 0.5s;
+                    position: relative;
+                    font-size: 17px;
+                    background: #333;
+                    border: none;
+                    color: #fff;
+                }
+    
+                button:hover {
+                    letter-spacing: 0.25em;
+                    background: #ffffff;
+                    color: #ffffff;
+                    box-shadow: 0 0 45px #ffffff;
+                }
+    
+                button::before {
+                    content: '';
+                    position: absolute;
+                    inset: 2px;
+                    background: #222222;
+                }
+    
+                button span {
+                    position: relative;
+                    z-index: 1;
+                }
+    
+                button i {
+                    position: absolute;
+                    inset: 0;
+                    display: block;
+                }
+    
+                button i::before {
+                    content: '';
+                    position: absolute;
+                    border: 2px solid #ffffff;
+                    width: 7px;
+                    height: 4px;
+                    top: -3.5px;
+                    left: 80%;
+                    background: #222222;
+                    transform: translateX(-50%);
+                    transition: 0.5s;
+                }
+    
+                button:hover i::before {
+                    width: 20px;
+                    left: 20%;
+                }
+    
+                button i::after {
+                    content: '';
+                    position: absolute;
+                    border: 2px solid #ffffff;
+                    width: 7px;
+                    height: 4px;
+                    bottom: -3.5px;
+                    left: 20%;
+                    background: #222222;
+                    transform: translateX(-50%);
+                    transition: 0.5s;
+                }
+    
+                button:hover i::after {
+                    width: 20px;
+                    left: 80%;
+                }
+            }
+        }
+    
+        .Sign-Title {
+            font-family: 'Arimo-Bold';
+            color: #fff;
+            margin: 5vh 0;
+        }
+    
+        .Sign-ButtonTo-Signup {
+            width: 50%;
+    
+            /* From uiverse.io by @alexmaracinaru */
+            .cta {
+                border: none;
+                background: none;
+            }
+    
+            .cta span {
+                padding-bottom: 7px;
+                letter-spacing: 4px;
+                font-size: 14px;
+                padding-right: 15px;
+                text-transform: uppercase;
+            }
+    
+            .cta svg {
+                filter: invert(100);
+                transform: translateX(-8px);
+                transition: all 0.3s ease;
+            }
+    
+            .cta:hover svg {
+                transform: translateX(0);
+            }
+    
+            .cta:active svg {
+                transform: scale(0.9);
+            }
+    
+            .hover-underline-animation {
+                position: relative;
+                color: #fff;
+                padding-bottom: 20px;
+            }
+    
+            .hover-underline-animation:after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                transform: scaleX(0);
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: #ffff;
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+    
+            .cta:hover .hover-underline-animation:after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+        }
+        .Sign-Erro{
+            color: red;
+            font-family:'Arimo-Bold';
+            font-size: 1.1em;
+        }
+    }
+}

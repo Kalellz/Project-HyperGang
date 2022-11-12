@@ -139,7 +139,7 @@ function App() {
                       </span>
                       <br />
                       Entrega estimada entre {data.getDay() + 3} do{" "}
-                      {data.getMonth() + 2} e {data.getDay() - 2} do{" "}
+                      {data.getMonth() + 2} e {data.getDay() + 1} do{" "}
                       {data.getMonth() - 9}.
                     </h5>
                   </div>

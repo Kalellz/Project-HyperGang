@@ -33,7 +33,7 @@ function App() {
                 <div className='text-center'>
                   <h1 className='fs-3 text-dark'>{item.nm_produto}</h1>
                   <h1 className='fs-5' style={{ color: '#1fff66' }}>R$ {item.vl_produto},00</h1>
-                  <button type="button" class="btn btn-dark mt-5">Quero Ver!</button>
+                  <button type="button" class="btn btn-dark mt-5" onClick={() => navigate(`/product/${item.id_produto}`)}>Quero Ver!</button>
                 </div>
               </div>
             </div>

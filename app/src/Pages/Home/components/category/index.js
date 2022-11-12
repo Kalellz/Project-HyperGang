@@ -20,7 +20,7 @@ function App() {
             ? <img className='rounded-circle' src={`http://localhost:5000/${item.img_categoria}`}/>
             : <div></div>
             }
-            <h1 className='fs-4'>{item.nm_categoria}</h1>
+            <h1 className='fs-4'>{item.nm_categoria[0].toUpperCase() + item.nm_categoria.substring(1)}</h1>
           </div>))}
       </div>
 

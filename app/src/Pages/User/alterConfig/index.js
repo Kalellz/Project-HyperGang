@@ -179,7 +179,7 @@ function App() {
                                         <h1>Imagem:</h1>
                                         <div className="input-group m-4">
                                             <img src={exibirImagem(image)} />
-                                            <input type="file" className="form-control bg-dark text-white" onChange={e => setImage(e.target.files[0])} />
+                                            <input type="file" className="file form-control bg-dark text-white" onChange={e => setImage(e.target.files[0])} />
                                         </div>
                                     </div>
                                 }
