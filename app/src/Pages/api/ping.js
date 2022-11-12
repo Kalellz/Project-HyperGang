@@ -1,6 +1,6 @@
-function ping(req, resp){
+function ping(request, response){
     const data = new Date()
-    resp.json({
+    response.json({
         date: data.toGMTSring()
     });
 }
